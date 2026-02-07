@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>For Crystal 🌹</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(#ffe6f0, #ffd1dc);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #9b003a;
+      overflow: hidden;
+    }
+
+    /* Floating Hearts Background */
+    .heart-bg {
+      position: absolute;
+      top: -10%;
+      color: rgba(255, 92, 138, 0.3);
+      font-size: 20px;
+      user-select: none;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to { transform: translateY(110vh) rotate(360deg); }
+    }
+
+    .page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(5px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      z-index: 10;
+      max-width: 80%;
+    }
+
+    .page.active { display: flex; }
+
+    button {
+      margin-top: 20px;
+      padding: 15px 30px;
+      font-size: 18px;
+      border: none;
+      border-radius: 50px;
+      background: #ff5c8a;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 4px 15px rgba(255, 92, 138, 0.4);
+    }
+
+    button:hover {
+      transform: scale(1.05);
+      background: #e64a79;
+    }
+
+    .flowers {
+      font-size: 80px;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .music-container {
+      margin-top: 25px;
+      padding: 15px;
+      background: white;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement('div');
+      heart.classList.add('heart-bg');
+      heart.innerHTML = '❤️';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 5000);
+    }
+    setInterval(createHeart, 300);
+  </script>
+
+  <div class="page active" id="page1">
+    <h1>Hi Crystal 💖</h1>
+    <p>I wanted to send you a little something...</p>
+    <button onclick="nextPage()">Open it</button>
+  </div>
+
+  <div class="page" id="page2">
+    <div class="flowers">🌹</div>
+    <h2>Happy Rose Day, Crystal</h2>
+    <p>A rose for love, and a tulip for care.</p>
+    <p><strong>You make every day brighter. ❤️</strong></p>
+
+    <div class="music-container">
+        <p style="margin:0; font-size: 14px;">Tap below to hear your song</p>
+        <iframe id="player" width="200" height="100" src="https://www.youtube.com/embed/CnEqrgMlWLQ?enablejsapi=1" frameborder="0" style="border-radius: 10px;"></iframe>
+    </div>
+  </div>
+
+  <script>
+    function nextPage() {
+      document.getElementById("page1").classList.remove("active");
+      document.getElementById("page2").classList.add("active");
+    }
+  </script>
+
+</body>
+</html>
